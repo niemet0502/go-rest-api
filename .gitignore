@@ -1,0 +1,23 @@
+# Compiled binary files
+*.exe
+*.o
+*.out
+
+# Dependency directories
+/bin
+/pkg
+/vendor
+
+# Local development environment files
+.idea
+.vscode
+
+# Build files
+/build
+
+# Environment configuration files
+.env
+
+# OS-specific files
+.DS_Store
+Thumbs.db

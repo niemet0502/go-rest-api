@@ -1,6 +1,7 @@
 package services
 
 import (
+	"errors"
 	"go-server/entities"
 	"go-server/repositories"
 )
@@ -23,4 +24,16 @@ func (gs *GameService) FindAll() []entities.Game {
 
 func (gs *GameService) GetById(id int) (entities.Game, error) {
 	return gs.reposity.GetGameById(id)
+}
+
+func (gs *GameService) Remove(id int) error {
+	// get the game
+
+	game, err := gs.reposity.GetGameById(id)
+
+	if err != nil {
+		return errors.New("Game not found")
+	}
+
+	return gs.reposity.Delete(game)
 }

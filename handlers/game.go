@@ -13,7 +13,7 @@ import (
 func HomeHandler(w http.ResponseWriter, r *http.Request) {
 	// Write response for the home page
 	w.WriteHeader(http.StatusOK)
-	w.Write([]byte("Marius The last codebender"))
+	w.Write([]byte("Home Handler"))
 }
 
 func HandlerGetGames(w http.ResponseWriter, r *http.Request) {
@@ -39,8 +39,6 @@ func HandleGetGame(w http.ResponseWriter, r *http.Request) {
 	id := vars["id"]
 
 	num, _ := strconv.Atoi(id)
-
-	log.Println(num)
 
 	gameService := services.CreateNewGameService()
 
@@ -83,4 +81,24 @@ func HandleCreateGame(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
 	w.Write(jsonResponse)
+}
+
+func HandleDeleteGame(w http.ResponseWriter, r *http.Request) {
+	vars := mux.Vars(r)
+
+	id := vars["id"]
+
+	num, _ := strconv.Atoi(id)
+
+	gameService := services.CreateNewGameService()
+
+	err := gameService.Remove(num)
+
+	if err != nil {
+		log.Fatal("Error")
+		return
+	}
+
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(http.StatusOK)
 }

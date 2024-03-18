@@ -39,3 +39,7 @@ func (gr *GameRepository) GetGameById(id int) (entities.Game, error) {
 	}
 	return game, nil
 }
+
+func (gr *GameRepository) Delete(game entities.Game) error {
+	return gr.DB.Delete(&game).Error
+}

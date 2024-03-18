@@ -16,6 +16,7 @@ func InitRoutes() *mux.Router {
 	gamesRouter.HandleFunc("", handlers.HandleCreateGame).Methods("POST")
 	gamesRouter.HandleFunc("", handlers.HandlerGetGames).Methods("GET")
 	gamesRouter.HandleFunc("/{id}", handlers.HandleGetGame).Methods("GET")
+	gamesRouter.HandleFunc("/{id}", handlers.HandleDeleteGame).Methods("DELETE")
 
 	return r
 }
